@@ -1,6 +1,6 @@
-Server:
-x104m13
+# Force Ice to look for the server at this IP address
+Ice.Default.Host=142.104.81.27
 
-Client:
-10.147.17.127 
+# Match the adapter name 'Printer' discovered by your program
+Printer.Endpoints=tcp -h 142.104.81.27 -p 9099
 
