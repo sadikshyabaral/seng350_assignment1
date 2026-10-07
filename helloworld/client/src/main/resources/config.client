@@ -2,7 +2,7 @@
 # The client reads this property to create the reference to the
 # "hello" object in the server.
 #
-Printer.Proxy=SimplePrinter:tcp -h 142.104.81.27 -p 9099
+Printer.Proxy=SimplePrinter:tcp -h elw-b238-35 -p 9099
 
 #
 # Uncomment to use the WebSocket transports instead.
