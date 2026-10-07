@@ -10,17 +10,17 @@ public class Client
 
         try(com.zeroc.Ice.Communicator communicator = com.zeroc.Ice.Util.initialize(args,"config.client",extraArgs))
         {
-            //com.zeroc.Ice.ObjectPrx base = communicator.stringToProxy("SimplePrinter:default -p 10000");
+            com.zeroc.Ice.ObjectPrx base = communicator.stringToProxy("SimplePrinter:tcp -h elw-b238-35 -p 9099");
+
             Demo.PrinterPrx twoway = Demo.PrinterPrx.checkedCast(
                 communicator.propertyToProxy("Printer.Proxy")).ice_twoway().ice_secure(false);
-            //Demo.PrinterPrx printer = Demo.PrinterPrx.checkedCast(base);
-            Demo.PrinterPrx printer = twoway.ice_oneway();
+            Demo.PrinterPrx printer = Demo.PrinterPrx.checkedCast(base);
+            //PrinterPrx printer = PrinterPrx.checkedCast(base);
 
             if(printer == null)
             {
                 throw new Error("Invalid proxy");
             }
-            //printer.printString("Hello World from a remote client!");
             
             String username = System.getProperty("user.name");
             String hostname = "";
@@ -40,7 +40,7 @@ public class Client
             {
                 while (true)
                 {
-                    System.out.print("press Enter to send message or type 'exit' to quit: ");
+                    System.out.print("press Enter to send message or type 'exit' to quit: "); //change this if you want to change prompt to user every line
                     if (!scanner.hasNextLine())
                     {
                         break;
@@ -50,14 +50,16 @@ public class Client
 
                     if ("exit".equalsIgnoreCase(input.trim()))
                     {
-                        System.out.println("Terminating client connection...");
+                        System.out.println("Terminating client connection.");
                         break;
                     }
 
                     if (!input.trim().isEmpty())
                     {
                         String formattedMessage = username + ":" + hostname + ":" + input;
-                        printer.printString(formattedMessage);
+                        int result = printer.printString(formattedMessage);
+
+                        System.out.println("Server response: " + result);
                     }
                 }
             }
