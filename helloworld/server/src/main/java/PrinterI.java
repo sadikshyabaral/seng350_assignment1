@@ -69,7 +69,7 @@ public class PrinterI implements Demo.Printer {
         double serverExecutionTimeMs = (serverEnd - serverStart) / 1_000_000.0;
 
         // print server service execution time
-        System.out.printf("Server Execution Time: %.3f ms%n", serverExecutionTimeMs);
+        //System.out.printf("Server Execution Time: %.3f ms%n", serverExecutionTimeMs);
 
         response.serverExecutionTimeMs = serverExecutionTimeMs;
         return response;
