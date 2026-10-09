@@ -57,7 +57,7 @@ public class Client
                     if (!input.trim().isEmpty())
                     {
                         String formattedMessage = username + ":" + hostname + ":" + input;
-                        int result = printer.printString(formattedMessage);
+                        double[] result = printer.printString(formattedMessage);
 
                         System.out.println("Server response: " + result);
                     }
