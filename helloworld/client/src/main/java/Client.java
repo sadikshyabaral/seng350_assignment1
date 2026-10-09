@@ -56,10 +56,25 @@ public class Client
 
                     if (!input.trim().isEmpty())
                     {
-                        String formattedMessage = username + ":" + hostname + ":" + input;
-                        double[] result = printer.printString(formattedMessage);
+                        long endToEndStart = System.nanoTime(); // full
 
-                        System.out.println("Server response: " + result);
+                        String formattedMessage = username + ":" + hostname + ":" + input;
+
+                        long clientInvokeStart = System.nanoTime();
+                        Demo.Response response = printer.printString(formattedMessage);
+                        long clientInvokeEnd = System.nanoTime();
+                        double endToEndTimeMs = (System.nanoTime() - endToEndStart) / 1_000_000.0;
+
+                        double serverExecutionTimeMs = response.serverExecutionTimeMs;
+                        double clientInvokeTimeMs = (clientInvokeEnd - clientInvokeStart) / 1_000_000.0;
+                        double networkLatencyMs = clientInvokeTimeMs - serverExecutionTimeMs;
+
+                        System.out.println("Server response: " + response.result);
+
+                        System.out.printf("1. Server Service Execution Time:          %.3f ms%n", serverExecutionTimeMs);
+                        System.out.printf("2. Client Invocation & Response Time:      %.3f ms%n", clientInvokeTimeMs);
+                        System.out.printf("3. Network & Middleware Transmission Time: %.3f ms%n", networkLatencyMs);
+                        System.out.printf("4. Total End-to-End Elapsed Time:          %.3f ms%n", endToEndTimeMs);
                     }
                 }
             }
