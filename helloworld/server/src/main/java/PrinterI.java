@@ -1,9 +1,10 @@
 public class PrinterI implements Demo.Printer
 {
     @Override
-    public int printString(String s, com.zeroc.Ice.Current current)
+    public double[] printString(String s, com.zeroc.Ice.Current current)
     {
         String[] parts = s.split(":", 3);
+        double[] response = new double[2];
 
         if (parts.length == 3) {
             String username = parts[0].trim();
@@ -38,7 +39,8 @@ public class PrinterI implements Demo.Printer
                     System.out.println(username + ":" + hostname + ": " + seriesOutput.toString().trim());
 
                     // return final calculated fib(N) to client
-                    return fib[n];
+                    response[0] = fib[n];
+                    return response;
                 }
             } catch (NumberFormatException e) {
                 // not a valid integer
@@ -47,8 +49,9 @@ public class PrinterI implements Demo.Printer
 
         // print raw message on server console if no positivie int
         System.out.println(s);
-
+        response[0] = 0;
+        
         // return 0 to client
-        return 0;
+        return response;
     }
 }

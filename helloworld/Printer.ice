@@ -1,7 +1,9 @@
 module Demo
 {
+    sequence<double> DoubleArray;
+    
     interface Printer
     {
-        int printString(string s);
+        DoubleArray printString(string s);
     }
 }
