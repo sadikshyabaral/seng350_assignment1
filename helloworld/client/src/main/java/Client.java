@@ -71,9 +71,9 @@ public class Client
 
                         System.out.println("Server response: " + response.result);
 
-                        System.out.printf("1. Server Service Execution Time:          %.3f ms%n", serverExecutionTimeMs);
-                        System.out.printf("2. Client Invocation & Response Time:      %.3f ms%n", clientInvokeTimeMs);
-                        System.out.printf("3. Network & Middleware Transmission Time: %.3f ms%n", networkLatencyMs);
+                        // System.out.printf("1. Server Service Execution Time:          %.3f ms%n", serverExecutionTimeMs);
+                        // System.out.printf("2. Client Invocation & Response Time:      %.3f ms%n", clientInvokeTimeMs);
+                        // System.out.printf("3. Network & Middleware Transmission Time: %.3f ms%n", networkLatencyMs);
                         System.out.printf("4. Total End-to-End Elapsed Time:          %.3f ms%n", endToEndTimeMs);
                     }
                 }
